@@ -2,13 +2,9 @@
 import React, { Suspense, use, useEffect, useState } from 'react'
 import Loading from './loading'
 import useEmployeeStore from '@/store/employee'
-import useStore from '@/hooks/useStore'
 import { DataTable } from './data-table'
-import { toTitleCase } from '@/lib/utils'
 import { columns } from './columns'
 import usePageStore from '@/store/page'
-import { get } from 'http'
-import { getDictionary } from '../../dictionaries'
 
 export function ViewEmployeesPage() {
   const [isLoading, setIsLoading] = useState(true)

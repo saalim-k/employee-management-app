@@ -6,8 +6,6 @@ import EmployeeForm from '@/components/molecules/employee-form'
 import usePageStore from '@/store/page'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import View from './view'
 
 function EditEmployeePage({ params }: { params: { id: string } }) {

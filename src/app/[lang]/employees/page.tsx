@@ -13,8 +13,7 @@ import AddEmployeePage from './add/page'
 import ViewEmployeesPage from './view/page'
 import usePageStore from '@/store/page'
 import Loading from './loading'
-import { Locale, getDictionary } from '../dictionaries'
-import { Dictionary } from '@/types'
+import { Locale } from '../dictionaries'
 
 type Props = {
   params: {
