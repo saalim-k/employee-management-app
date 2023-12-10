@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import View from './view'
 
 function EditEmployeePage({ params }: { params: { id: string } }) {
   const { id } = params
@@ -37,8 +38,9 @@ function EditEmployeePage({ params }: { params: { id: string } }) {
   if (!employee) {
     return <div>Loading...</div>
   }
+  const fullName = `${employee.first_name} ${employee.last_name}`
   const truncatedName =
-    `${employee.first_name} ${employee.last_name}`.slice(0, 25) + '...'
+    fullName.length > 25 ? fullName.slice(0, 25) + '...' : fullName
 
   return (
     <div className="mt-10">
@@ -78,33 +80,8 @@ function EditEmployeePage({ params }: { params: { id: string } }) {
               </CardHeader>
               <CardContent>
                 <p>Employee Details</p>
-                <div className="grid grid-cols-2 gap-2">
-                  <Label>First Name</Label>
-                  <p>{employee.first_name}</p>
-                  <Label>Last Name</Label>
-                  <p>{employee.last_name}</p>
-                  <Label>Email</Label>
-                  <p>{employee.email}</p>
-                  <Label>Age</Label>
-                  <p>{employee.age}</p>
-                  <Label>Salary</Label>
-                  <p>{employee.salary}</p>
-                  <Label>Avatar</Label>
-                  <Avatar>
-                    <AvatarImage
-                      src={
-                        employee.avatar.includes('http')
-                          ? employee.avatar
-                          : `/avatars/${employee.avatar}`
-                      }
-                      alt="default avatar"
-                    />
-                    <AvatarFallback>
-                      {employee.first_name[0]}
-                      {employee.last_name[0]}
-                    </AvatarFallback>
-                  </Avatar>
-                </div>
+                
+                <View employee={employee} />
               </CardContent>
             </CardContent>
           </Card>

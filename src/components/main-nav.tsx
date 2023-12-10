@@ -1,14 +1,14 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { cn, generateStaticParams } from "@/lib/utils";
+
 
 export function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   const pathName = usePathname();
-  console.log(pathName);
 
   return (
     <nav
@@ -16,14 +16,13 @@ export function MainNav({
       {...props}
     >
       <LinkItem href="/employees" currentRoute={pathName} name="Employees" />
-      <LinkItem href="/samples" currentRoute={pathName} name="Samples" />
+      <LinkItem href="/samples" currentRoute={pathName} name="Samples"/>
     </nav>
   );
 }
 
 function LinkItem(props: any) {
   const { name, currentRoute, href } = props;
-  console.log(href, 'href')
   return (
     <Link
       href={href}

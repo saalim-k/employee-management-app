@@ -16,3 +16,7 @@ export function toTitleCase(str: string) {
 export function removeSpaces(str: string) {
   return str.replace(/\s/g, '');
 }
+
+export async function generateStaticParams() {
+  return [{ lang: 'en-US' }, { lang: 'de' }]
+}

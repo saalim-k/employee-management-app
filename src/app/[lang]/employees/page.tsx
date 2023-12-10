@@ -8,19 +8,26 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import AddEmployeePage from './add/page'
 import ViewEmployeesPage from './view/page'
 import usePageStore from '@/store/page'
 import Loading from './loading'
-import { getDictionary } from '../dictionaries/getDictionary'
+import { Locale, getDictionary } from '../dictionaries'
+import { Dictionary } from '@/types'
 
-const EmployeesPage = () => {
+type Props = {
+  params: {
+    lang: Locale
+  }
+}
+
+const EmployeesPage = ({ params: { lang } }: Props) => {
   const [isLoading, setIsLoading] = useState(true)
   const view = usePageStore((state) => state.view)
   const setView = usePageStore((state) => state.setView)
-  const lang = useEffect(() => {
+
+  useEffect(() => {
     if (!view || view === '') {
       setView('view')
     }
@@ -37,8 +44,6 @@ const EmployeesPage = () => {
   const addEmployees = () => {
     setView('add')
   }
-
-  // const intl = await getDictionary(params.lang)
 
   return (
     <div className="container p-4">
