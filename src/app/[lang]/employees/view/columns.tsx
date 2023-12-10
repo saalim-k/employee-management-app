@@ -25,6 +25,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 type ColumnDef<T extends object> = BaseColumnDef<T> & {
   setView?: (view: string) => void
@@ -73,15 +74,21 @@ export const columns = (
     accessorKey: 'avatar',
     cell: ({ row }) => {
       const employee = row.original
-      if (!employee.avatar) {
-        return "No Avatar"
-      }
       return (
-        <img
-          src={employee.avatar.includes('http') ? employee.avatar : `/avatars/${employee.avatar}`}
-          alt={employee.avatar}
-          className="h-8 w-8 rounded-full"
-        />
+        <Avatar>
+          <AvatarImage
+            src={
+              employee.avatar.includes('http')
+                ? employee.avatar
+                : `/avatars/${employee.avatar}`
+            }
+            alt="default avatar"
+          />
+          <AvatarFallback>
+            {employee.first_name[0]}
+            {employee.last_name[0]}
+          </AvatarFallback>
+        </Avatar>
       )
     },
   },
@@ -141,7 +148,7 @@ export const columns = (
             <DropdownMenuItem
               onClick={() => {
                 window.location.href = `/employees/edit/${employee.id}`
-                setView('edit')
+                setView('edit-employee')
               }}
             >
               Edit Emplyee

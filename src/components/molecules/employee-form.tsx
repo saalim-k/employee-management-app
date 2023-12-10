@@ -1,4 +1,4 @@
-import { Employee } from '@/app/employees/add/page'
+import { Employee } from '@/app/[lang]/employees/add/page'
 import React, { useState, useEffect } from 'react'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
@@ -45,7 +45,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
       reader.onloadend = () => {
         let data = null
         if (reader.result && typeof reader.result === 'string') {
-         data = reader.result.split(',')[1];
+          data = reader.result.split(',')[1]
         }
         fetch('/api/save-avatar', {
           method: 'POST',
@@ -181,7 +181,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             <Label htmlFor="avatar">Preview</Label>
             <img
               alt="avatar"
-              src={employee.avatar.includes('http') ? employee.avatar : `/avatars/${employee.avatar}`}
+              src={
+                employee.avatar.includes('http')
+                  ? employee.avatar
+                  : `/avatars/${employee.avatar}`
+              }
               className="w-10 h-10 rounded-full"
             ></img>
           </div>

@@ -8,6 +8,7 @@ export function MainNav({
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   const pathName = usePathname();
+  console.log(pathName);
 
   return (
     <nav
@@ -22,6 +23,7 @@ export function MainNav({
 
 function LinkItem(props: any) {
   const { name, currentRoute, href } = props;
+  console.log(href, 'href')
   return (
     <Link
       href={href}

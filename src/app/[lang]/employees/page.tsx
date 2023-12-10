@@ -14,15 +14,15 @@ import AddEmployeePage from './add/page'
 import ViewEmployeesPage from './view/page'
 import usePageStore from '@/store/page'
 import Loading from './loading'
+import { getDictionary } from '../dictionaries/getDictionary'
 
 const EmployeesPage = () => {
   const [isLoading, setIsLoading] = useState(true)
   const view = usePageStore((state) => state.view)
   const setView = usePageStore((state) => state.setView)
-
-  useEffect(() => {
-    if (!view) {
-      setView('')
+  const lang = useEffect(() => {
+    if (!view || view === '') {
+      setView('view')
     }
     setIsLoading(false)
   }, [view, setView])
@@ -38,6 +38,8 @@ const EmployeesPage = () => {
     setView('add')
   }
 
+  // const intl = await getDictionary(params.lang)
+
   return (
     <div className="container p-4">
       <Card className="col">
@@ -46,7 +48,6 @@ const EmployeesPage = () => {
           <CardDescription>Manage your employees</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Content</p>
           <div className="grid grid-cols-3 gap-1 py-2">
             <Button
               onClick={addEmployees}
@@ -62,9 +63,7 @@ const EmployeesPage = () => {
             </Button>
           </div>
         </CardContent>
-        <CardFooter>
-          <p>Footer</p>
-        </CardFooter>
+        <CardFooter></CardFooter>
       </Card>
       {view === 'add' && <AddEmployeePage setView={setView} />}
       {view === 'view' && <ViewEmployeesPage />}
